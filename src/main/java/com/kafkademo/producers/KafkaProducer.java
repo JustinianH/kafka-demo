@@ -26,6 +26,7 @@ public class KafkaProducer {
     }
 
     public void sendMessageWithKey(String topic, String key, String payload) {
+        LOGGER.info("sending payload='{}' with key='{} 'to topic='{}'", payload, key, topic);
         kafkaTemplate.send(topic, key, payload);
     }
 

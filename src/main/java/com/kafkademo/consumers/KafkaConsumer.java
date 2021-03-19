@@ -2,8 +2,6 @@ package com.kafkademo.consumers;
 
 import com.kafkademo.models.ChangesInMe;
 import com.kafkademo.services.ChangesInMeService;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;
@@ -35,6 +33,8 @@ public class KafkaConsumer {
     public String getPayload() {
         return payload;
     }
+
+//    End Testing
 
     @KafkaListener(topics = "${topic.name}", groupId = "test")
     public void receiveMessage(ConsumerRecord<?, ?> consumerRecord) {

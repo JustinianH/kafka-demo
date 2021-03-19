@@ -36,6 +36,12 @@ public class ChangesInMeService {
         return changesInMeRepository.findByReadFalse();
     }
 
+//    Get All Changes
+
+    public List<ChangesInMe> getAllChangesInMe() {
+        return changesInMeRepository.findAll();
+    }
+
 
 //    Retrieve changes with filtering on BloodSugarLevel
 

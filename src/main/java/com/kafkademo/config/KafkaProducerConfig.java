@@ -38,7 +38,7 @@ public class KafkaProducerConfig {
         return new KafkaTemplate<>(producerFactory());
     }
 
-//    Kafka pruducer factory that takes in Changes in Me
+//    Kafka producer factory that takes in Changes in Me
 
     @Bean
     public ProducerFactory<String, ChangesInMe> changesInMeFactory() {

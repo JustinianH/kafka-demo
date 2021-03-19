@@ -1,11 +1,13 @@
 package com.kafkademo.controllers;
 
+import com.kafkademo.client.FilterServiceClient;
 import com.kafkademo.models.ChangesInMe;
 import com.kafkademo.producers.KafkaProducer;
 import com.kafkademo.services.ChangesInMeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -17,6 +19,7 @@ public class WebController {
     KafkaProducer producer;
 
     private final ChangesInMeService changesInMeService;
+    private final FilterServiceClient filterServiceClient;
 
 //    Submit simple String
 
@@ -43,4 +46,11 @@ public class WebController {
     public List<ChangesInMe> getFilteredChanges(@RequestParam Integer bloodSugarLevel) {
         return changesInMeService.filterChangesInMe(bloodSugarLevel);
     }
+
+    @GetMapping("/api/changes-in-me/filter")
+    public List<ChangesInMe> getFilteredChangesThroughClient(@RequestParam Integer bloodSugarLevel) {
+        List<ChangesInMe> allChanges = changesInMeService.getAllChangesInMe();
+         return filterServiceClient.filterChangesInMe(allChanges, bloodSugarLevel);
+    }
+
 }
